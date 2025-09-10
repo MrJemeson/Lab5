@@ -27,4 +27,10 @@ public class User {
     public void setTokens(int tokens) {
         this.tokens = tokens;
     }
+
+    @Override
+    public String toString() {
+        return "ID: "+ this.getID() + " "  + this.getFULL_NAME() + ". " + this.getROLE() +
+        ((this.getROLE().equals("Student"))?(". Tokens: " + this.getTokens()):("."));
+    }
 }

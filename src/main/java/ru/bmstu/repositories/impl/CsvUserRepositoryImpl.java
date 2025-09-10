@@ -2,7 +2,9 @@ package ru.bmstu.repositories.impl;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Repository;
 import ru.bmstu.objects.User;
 import ru.bmstu.repositories.UserRepository;
 
@@ -11,14 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
+@Repository
 public class CsvUserRepositoryImpl implements UserRepository {
     private final Resource csvResource;
     private final String csvHeader = "\"ID\",\"FullName\",\"Role\",\"Tokens\"";
 
-
-
-
-    public CsvUserRepositoryImpl(Resource resource) {
+    public CsvUserRepositoryImpl(@Value("${app.data.file}") Resource resource) {
         this.csvResource = resource;
     }
 
@@ -26,7 +26,7 @@ public class CsvUserRepositoryImpl implements UserRepository {
     public List<User> loadUsers() throws IOException, CsvValidationException {
         List<User> users = new ArrayList<>();
 
-        try (CSVReader reader = new CSVReader(new FileReader(csvResource.getFile()))) {
+        try (CSVReader reader = new CSVReader(new InputStreamReader(csvResource.getInputStream()))) {
             String[] parts;
             boolean firstLine = true;
 
