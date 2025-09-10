@@ -10,9 +10,4 @@ import ru.bmstu.repositories.impl.CsvUserRepositoryImpl;
 @ComponentScan("ru.bmstu")
 @EnableAspectJAutoProxy
 @PropertySource("classpath:application.properties")
-public class AppConfig {
-    @Bean
-    public CsvUserRepositoryImpl CsvUserRepository() {
-        return new CsvUserRepositoryImpl(new FileSystemResource("src/main/resources/data/users.csv"));
-    }
-}
+public class AppConfig { }
