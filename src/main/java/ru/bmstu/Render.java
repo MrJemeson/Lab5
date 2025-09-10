@@ -34,11 +34,11 @@ public class Render {
     public static void displayMainMenu(){
         int i = 1;
         System.out.println("Main Menu\n" +
-                i++ + ") Add Student\n" +
+                i++ + ") Add User\n" +
                 ((RoleCheck.isTeacher())?(i++ + ") Delete Student\n"):("")) +
                 i++ + ") Update Student Token\n" +
                 i++ + ") Show all Students\n" +
-                i++ + ") Log off");
+                i + ") Log off");
     }
 
     public static void displayStartAuthorisation(){
